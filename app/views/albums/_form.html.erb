@@ -1,0 +1,14 @@
+<%= form_with model: @album, class: "w-50" do |f| %>
+  <div class="form-group mb-3">
+    <%= f.label :title %>
+    <%= f.text_field :title, placeholder: "Album title...", required: true, class: "form-control" %>
+  </div>
+  <div class="form-group mb-3">
+    <%= f.label :artist_id, 'Artist:',
+      class: 'form-label' %>
+    <%= f.select :artist_id,
+        options_for_select(@artists),
+        {include_blank: true}, class: 'form-select', required: true %>
+  </div>
+  <%= f.submit "Add", remote: true, class: "btn btn-primary" %>
+<% end %>

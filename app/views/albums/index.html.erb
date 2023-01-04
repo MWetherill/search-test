@@ -1,0 +1,41 @@
+<div class="container py-5">
+  <h1 class="mb-3">Albums</h1>
+  <%= link_to "Add Album", new_album_path, class: "btn btn-primary mb-3" %>
+
+  <!-- search -->
+  <%= form_tag albums_path, :method => "get", class: "d-flex flex-row justify-content-center justify-content-md-end align-items-center mb-3" do %>
+    <%= link_to "clear", albums_path, class: "search-clear" %>
+    <%= text_field_tag :search, params[:search], placeholder: "Title...", class: "search-entry text-start px-2 ms-1 ms-md-2" %>
+    <%= submit_tag("Search", :title => nil, class: "search-submit btn btn-success ms-1 ms-md-2") %>
+  <% end %>
+
+  <table class="table">
+    <thead>
+      <th><%= sortable "title" %></th>
+      <th><%= sortable "artist", "Artist" %></th>
+      <th></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @albums.each do |a| %>
+        <tr>
+          <td><%= link_to a.title, album_path(a) %></td>
+          <td><%= link_to a.artist.title, artist_path(a.artist) %></td>
+          <td>
+            <%= link_to album_path(a) do %>
+              <i class="fas fa-eye"></i>
+            <% end %>
+            <%= link_to edit_album_path(a) do %>
+              <i class="fas fa-edit ms-2"></i>
+            <% end %>
+          </td>
+          <td><%= link_to 'Destroy', a, method: :delete, data: {confirm: 'Are you sure?'}, remote: true, class: 'delete_album' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="d-flex flex-row justify-content-end">
+    <%= paginate @albums %>
+  </div>
+</div>

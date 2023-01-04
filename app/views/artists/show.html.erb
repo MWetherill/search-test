@@ -1,0 +1,8 @@
+<div class="container py-5">
+  <h1 class="mb-3"><%= @artist.title %></h1>
+  <div class="d-flex flex-row jusify-cpntent-start align-items-center">
+    <%= link_to "Edit artist", edit_artist_path, class: "btn btn-warning mb-3 me-2" %>
+    <%= link_to "Add Another artist", new_artist_path, class: "btn btn-secondary mb-3 me-2" %>
+    <%= link_to "Back to artists", artists_path, class: "btn btn-primary mb-3" %>
+  </div>
+</div>

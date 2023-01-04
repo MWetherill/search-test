@@ -1,0 +1,18 @@
+<div class="container py-5">
+  <h1 class="mb-3">Artists</h1>
+  <%= link_to "Add artist", new_artist_path, class: "btn btn-primary mb-3" %>
+
+  <%= form_with model: @artist, path: artists_path, html: {method: 'get', class: "w-50", remote: true} do |f| %>
+    <div class="form-group mb-3">
+      <%= f.label :id, 'Select Artist:',
+        class: 'form-label' %>
+      <%= f.select :id,
+          options_for_select(@select_artists),
+          {include_blank: true}, {class: 'artist-select form-select'} %>
+    </div>
+  <% end %>
+  <div class="albums-heading"></div>
+  <div class="albums-message"></div>
+  <ul class="artist-albums"></ul>
+
+</div>
